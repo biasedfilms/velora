@@ -1,0 +1,515 @@
+/* Velora Release Polish
+   Quiet depth, deliberate motion, and better touch behavior.
+   This file intentionally sits last in the cascade so it can refine
+   the existing design without changing the information architecture.
+*/
+
+:root {
+    --polish-spring: cubic-bezier(.2, .8, .2, 1);
+    --polish-spring-tight: cubic-bezier(.16, 1, .3, 1);
+    --polish-fast: 150ms var(--polish-spring);
+    --polish-base: 220ms var(--polish-spring);
+    --polish-slow: 420ms var(--polish-spring-tight);
+}
+
+/* Browser details */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scrollbar-gutter: stable;
+    overscroll-behavior-x: none;
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-x: none;
+    transition:
+        background-color 320ms var(--polish-spring),
+        color 220ms var(--polish-spring);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep the glass effect crisp instead of overly frosted. */
+.glass {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    transition:
+        background-color var(--polish-base),
+        border-color var(--polish-base),
+        box-shadow 280ms var(--polish-spring),
+        transform 280ms var(--polish-spring);
+}
+
+.glass::before,
+.glass::after {
+    backface-visibility: hidden;
+}
+
+/* Cards should feel alive on desktop, but never "float" on touch devices. */
+@media (hover: none), (pointer: coarse) {
+    .glass:hover {
+        border-color: var(--glass-border);
+    }
+
+    .panel:hover,
+    .hero-card:hover,
+    .stat-card:hover,
+    .safe-card:hover {
+        transform: none !important;
+        box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-border-inner);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .glass:hover {
+        border-color: var(--glass-border-hover);
+    }
+
+    .panel:hover,
+    .hero-card:hover,
+    .stat-card:hover,
+    .safe-card:hover {
+        transform: translate3d(0, -3px, 0) scale(1.001);
+        box-shadow:
+            var(--glass-shadow),
+            0 18px 38px rgba(0, 0, 0, .07),
+            inset 0 1px 0 var(--glass-border-inner);
+    }
+
+    .transaction-row,
+    .account-row,
+    .category-row,
+    .budget-row,
+    .goal-row,
+    .recurring-row,
+    .settings-card {
+        transition:
+            background-color var(--polish-fast),
+            border-color var(--polish-fast),
+            transform var(--polish-base);
+    }
+
+    .transaction-row:hover,
+    .account-row:hover,
+    .category-row:hover,
+    .budget-row:hover,
+    .goal-row:hover,
+    .recurring-row:hover,
+    .settings-card:hover {
+        background: color-mix(in srgb, var(--surface-hover) 55%, transparent);
+    }
+}
+
+/* Navigation: softer state changes and a clearer active surface. */
+.nav-item,
+.mobile-nav-item {
+    transition:
+        background-color var(--polish-base),
+        color var(--polish-base),
+        box-shadow var(--polish-base),
+        transform var(--polish-fast);
+}
+
+.nav-item.is-active {
+    box-shadow:
+        inset 0 1px 0 var(--glass-border-inner),
+        0 1px 2px rgba(0, 0, 0, .025);
+}
+
+.nav-item:active,
+.mobile-nav-item:active {
+    transform: scale(.975);
+}
+
+.nav-item:focus-visible,
+.mobile-nav-item:focus-visible,
+.icon-button:focus-visible,
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.danger-button:focus-visible,
+.text-button:focus-visible,
+.mobile-more-item:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+}
+
+/* Buttons: physical but restrained. */
+.primary-button,
+.secondary-button,
+.danger-button,
+.icon-button {
+    transition:
+        background-color var(--polish-fast),
+        border-color var(--polish-fast),
+        box-shadow var(--polish-base),
+        color var(--polish-fast),
+        opacity var(--polish-fast),
+        transform var(--polish-fast);
+}
+
+.primary-button {
+    box-shadow:
+        0 8px 24px var(--button-shadow),
+        inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.primary-button:hover {
+    opacity: 1;
+}
+
+.primary-button:active,
+.secondary-button:active,
+.danger-button:active,
+.icon-button:active {
+    transform: scale(.965);
+}
+
+.text-button {
+    transition: color var(--polish-fast), opacity var(--polish-fast);
+}
+
+.text-button:hover {
+    opacity: .82;
+}
+
+/* Quiet controls inside forms. */
+.form-field input,
+.form-field select,
+.amount-input,
+.more-options summary {
+    transition:
+        border-color var(--polish-fast),
+        background-color var(--polish-fast),
+        box-shadow var(--polish-fast),
+        color var(--polish-fast);
+}
+
+.form-field input:hover,
+.form-field select:hover {
+    border-color: var(--glass-border-hover);
+}
+
+/* More deliberate chips without adding movement everywhere. */
+.soft-badge,
+.date-chip,
+.info-badge,
+.filter-button,
+.type-switch span,
+.category-options span {
+    transition:
+        background-color var(--polish-fast),
+        border-color var(--polish-fast),
+        color var(--polish-fast),
+        box-shadow var(--polish-fast),
+        transform var(--polish-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .type-switch label:hover span,
+    .category-options label:hover span,
+    .filter-button:hover,
+    .info-badge:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* Bottom navigation gets an understated active "pill" instead of a hard block. */
+@media (max-width: 900px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .mobile-nav {
+        padding: 6px;
+        gap: 3px;
+        box-shadow:
+            0 18px 42px rgba(0,0,0,.18),
+            0 2px 10px rgba(0,0,0,.10),
+            inset 0 1px 0 var(--glass-border-inner);
+    }
+
+    .mobile-nav-item {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        background: transparent;
+    }
+
+    .mobile-nav-item::before {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border-radius: 13px;
+        background: var(--nav-active);
+        box-shadow: inset 0 1px 0 var(--glass-border-inner);
+        opacity: 0;
+        transform: scale(.86);
+        transition:
+            opacity 220ms var(--polish-spring),
+            transform 280ms var(--polish-spring-tight);
+        z-index: -1;
+    }
+
+    .mobile-nav-item.is-active::before {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .mobile-nav-item.is-active {
+        background: transparent;
+        color: var(--text);
+    }
+
+    .mobile-nav-item .nav-icon,
+    .mobile-nav-item span {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Reduce expensive backdrop work on smaller screens while keeping the glass feel. */
+    .glass {
+        backdrop-filter: blur(16px) saturate(125%);
+        -webkit-backdrop-filter: blur(16px) saturate(125%);
+    }
+
+    .sheet-backdrop {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+}
+
+@media (max-width: 620px) {
+    .mobile-nav {
+        left: 10px;
+        right: 10px;
+        bottom: max(8px, env(safe-area-inset-bottom));
+        border-radius: 20px;
+    }
+
+    .mobile-nav-item {
+        min-height: 48px;
+        border-radius: 14px;
+    }
+
+    .mobile-more-sheet {
+        box-shadow:
+            0 22px 54px rgba(0,0,0,.22),
+            inset 0 1px 0 var(--glass-border-inner);
+    }
+
+    .mobile-more-item {
+        transition:
+            background-color var(--polish-fast),
+            border-color var(--polish-fast),
+            color var(--polish-fast),
+            box-shadow var(--polish-base),
+            transform var(--polish-fast);
+    }
+
+    .mobile-more-item:active {
+        transform: scale(.975);
+    }
+}
+
+/* Modal stacking: keep the sheet above its backdrop.
+   The legacy category-sheet rule used a lower z-index, which caused the
+   account/category form itself to become blurred by the backdrop. */
+.sheet-backdrop {
+    z-index: 100;
+}
+
+.glass.category-sheet,
+.glass.transaction-sheet,
+.glass.onboarding-sheet,
+.glass.confirm-dialog {
+    z-index: 101;
+}
+
+#account-sheet,
+#category-sheet,
+#onboarding-sheet {
+    z-index: 101;
+}
+
+/* Dialog and sheet surfaces: stable geometry, soft entry, safe scrolling. */
+.sheet-backdrop {
+    background: rgba(8, 12, 16, .46);
+    transition: opacity 220ms var(--polish-spring);
+}
+
+.transaction-sheet,
+.category-sheet,
+.confirm-dialog,
+.mobile-more-sheet {
+    overscroll-behavior: contain;
+    box-shadow:
+        var(--glass-shadow),
+        0 26px 70px rgba(0,0,0,.18),
+        inset 0 1px 0 var(--glass-border-inner);
+}
+
+.confirm-dialog {
+    width: min(410px, calc(100% - 28px));
+}
+
+.sheet-actions .primary-button,
+.sheet-actions .secondary-button,
+.sheet-actions .danger-button {
+    min-height: 44px;
+}
+
+/* Give the app a calm first impression without a long entrance animation. */
+.app-shell {
+    animation-duration: 420ms;
+}
+
+/* Avoid expensive blur filters during view changes. */
+.view > .motion-enter {
+    will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glass,
+    .primary-button,
+    .secondary-button,
+    .danger-button,
+    .icon-button,
+    .nav-item,
+    .mobile-nav-item,
+    .mobile-more-item,
+    .text-button {
+        will-change: auto;
+    }
+
+    .mobile-nav-item::before {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* Very narrow phones: preserve touch target sizes and prevent action rows from pinching. */
+@media (max-width: 374px) {
+    .topbar-actions {
+        gap: 6px;
+    }
+
+    .topbar-actions .icon-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .mobile-nav {
+        left: 7px;
+        right: 7px;
+        padding-inline: 4px;
+    }
+
+    .mobile-nav-item {
+        min-height: 46px;
+    }
+
+    .mobile-nav-item span {
+        font-size: .52rem;
+    }
+
+    .sheet-actions,
+    .confirm-dialog .sheet-actions {
+        gap: 8px;
+    }
+}
+
+/* Release fix: the .glass performance transform must not replace the
+   positioning transform used by fixed sheets. Keep every fixed surface
+   centered/anchored correctly after the glass layer adds translateZ(0). */
+.transaction-sheet,
+.category-sheet,
+.confirm-dialog,
+.onboarding-sheet {
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    max-width: calc(100vw - 20px);
+    overflow-x: hidden;
+}
+
+.mobile-more-sheet {
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    max-width: calc(100vw - 20px);
+}
+
+@media (max-width: 620px) {
+    .transaction-sheet,
+    .category-sheet,
+    .onboarding-sheet {
+        width: calc(100vw - 20px);
+        max-width: 430px;
+        left: 50%;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        transform: translateX(-50%);
+        max-height: calc(100dvh - 10px);
+    }
+
+    .confirm-dialog {
+        width: min(390px, calc(100vw - 20px));
+        max-width: calc(100vw - 20px);
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        transform: translate(-50%, -50%);
+    }
+
+    .mobile-more-sheet {
+        width: min(520px, calc(100vw - 20px));
+        left: 50%;
+        right: auto;
+        bottom: max(18px, env(safe-area-inset-bottom));
+        transform: translateX(-50%);
+    }
+
+    .transaction-sheet .amount-input,
+    .transaction-sheet .form-field,
+    .transaction-sheet fieldset,
+    .transaction-sheet input,
+    .transaction-sheet select,
+    .transaction-sheet textarea {
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .transaction-sheet,
+    .category-sheet,
+    .confirm-dialog,
+    .onboarding-sheet {
+        transform: translate(-50%, -50%);
+    }
+
+    .mobile-more-sheet {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 620px) and (prefers-reduced-motion: reduce) {
+    .transaction-sheet,
+    .category-sheet,
+    .onboarding-sheet,
+    .mobile-more-sheet {
+        transform: translateX(-50%);
+    }
+
+    .confirm-dialog {
+        transform: translate(-50%, -50%);
+    }
+}

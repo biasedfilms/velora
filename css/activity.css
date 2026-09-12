@@ -1,0 +1,259 @@
+.activity-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activity-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.activity-search {
+    position: relative;
+    flex: 1 1 280px;
+}
+
+.activity-search input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 16px 0 42px;
+    border: 1px solid var(--input-border);
+    border-radius: 999px;
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+.activity-search input::placeholder {
+    color: var(--muted);
+}
+
+.activity-search svg {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    width: 17px;
+    height: 17px;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+}
+
+.activity-filters {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--control-bg);
+}
+
+.activity-filter {
+    min-height: 34px;
+    padding: 0 13px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font-size: .76rem;
+    font-weight: 680;
+}
+
+.activity-filter:hover {
+    color: var(--text);
+}
+
+.activity-filter.is-active {
+    background: var(--surface-hover);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 5%);
+}
+
+.activity-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted);
+    font-size: .74rem;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.activity-date-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.activity-date-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 4px 7px;
+    color: var(--muted);
+    font-size: .69rem;
+    font-weight: 720;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.activity-date-heading span:last-child {
+    opacity: .65;
+}
+
+.activity-date-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-transaction {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 13px;
+    min-height: 68px;
+    padding: 10px 4px;
+    border-bottom: 1px solid var(--divider);
+}
+
+.activity-transaction:last-child {
+    border-bottom: 0;
+}
+
+.activity-transaction-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--control-bg);
+    font-size: 1.15rem;
+    font-weight: 650;
+}
+
+.activity-transaction-icon.is-income {
+    color: var(--positive);
+    background: color-mix(
+        in srgb,
+        var(--positive) 12%,
+        transparent
+    );
+}
+
+.activity-transaction-icon.is-expense {
+    color: var(--text-secondary);
+}
+
+.activity-transaction-details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.activity-transaction-details strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: .9rem;
+}
+
+.activity-transaction-details span,
+.activity-transaction-details time {
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: .75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.activity-transaction-details time {
+    color: var(--muted);
+    font-size: .7rem;
+}
+
+.activity-transaction-amount {
+    white-space: nowrap;
+    font-size: .88rem;
+}
+
+.activity-transaction-actions {
+    display: flex;
+    gap: 3px;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.activity-transaction:hover .activity-transaction-actions,
+.activity-transaction:focus-within .activity-transaction-actions {
+    opacity: 1;
+}
+
+.activity-empty {
+    min-height: 220px;
+}
+
+@media (max-width: 620px) {
+    .activity-panel {
+        gap: 15px;
+    }
+
+    .activity-toolbar {
+        align-items: stretch;
+    }
+
+    .activity-search {
+        flex-basis: 100%;
+    }
+
+    .activity-filters {
+        width: fit-content;
+    }
+
+    .activity-filter {
+        min-height: 32px;
+        padding-inline: 11px;
+        font-size: .71rem;
+    }
+
+    .activity-list {
+        gap: 20px;
+    }
+
+    .activity-transaction {
+        grid-template-columns: 36px minmax(0, 1fr) auto;
+        gap: 10px;
+        padding: 10px 2px;
+    }
+
+    .activity-transaction-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+
+    .activity-transaction-amount {
+        font-size: .77rem;
+    }
+
+    .activity-transaction-actions {
+        grid-column: 2 / -1;
+        justify-content: flex-end;
+        margin-top: -4px;
+        opacity: 1;
+    }
+
+    .activity-transaction-details span {
+        max-width: 180px;
+    }
+}

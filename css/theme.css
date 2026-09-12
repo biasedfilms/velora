@@ -1,0 +1,130 @@
+/* Velora Design System — Theme Tokens */
+
+:root {
+    --font-ui: "Avenir Next", "SF Pro Display", "Helvetica Neue", sans-serif;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --background: #eef1f4;
+    --text: #111214;
+    --text-secondary: #59616a;
+    --muted: #7d858d;
+    --focus: #4169e1;
+
+    --glass-background: rgba(255, 255, 255, 0.58);
+    --glass-background-strong: rgba(255, 255, 255, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.82);
+    --glass-border-hover: rgba(255, 255, 255, 0.98);
+    --glass-border-inner: rgba(0, 0, 0, 0.055);
+    --glass-shadow: 0 20px 55px rgba(30, 43, 55, 0.09), 0 2px 8px rgba(30, 43, 55, 0.04);
+
+    --surface-hover: rgba(0, 0, 0, 0.042);
+    --nav-active: rgba(0, 0, 0, 0.075);
+    --control-bg: rgba(0, 0, 0, 0.05);
+    --control-hover: rgba(0, 0, 0, 0.085);
+    --inner-surface: rgba(0, 0, 0, 0.028);
+    --inner-border: rgba(0, 0, 0, 0.055);
+    --divider: rgba(0, 0, 0, 0.065);
+    --chip-bg: rgba(0, 0, 0, 0.035);
+    --chip-border: rgba(0, 0, 0, 0.06);
+
+    --accent: #4169e1;
+    --accent-soft: rgba(65, 105, 225, 0.15);
+    --accent-ring: rgba(65, 105, 225, 0.32);
+    --accent-glow: rgba(65, 105, 225, 0.11);
+    --positive: #2f9f67;
+    --button-shadow: rgba(25, 27, 35, 0.16);
+
+    --ambient-1: rgba(86, 139, 211, 0.11);
+    --ambient-2: rgba(232, 178, 153, 0.08);
+    --ambient-3: rgba(112, 193, 177, 0.07);
+
+    --radius-md: 18px;
+    --radius-lg: 26px;
+
+    --transition-fast: 140ms ease;
+    --transition-base: 180ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --background: #0d1115;
+        --text: #f5f5f7;
+        --text-secondary: #aab3bb;
+        --muted: #7d8790;
+        --focus: #9ab7ff;
+
+        --glass-background: rgba(255, 255, 255, 0.055);
+        --glass-background-strong: rgba(255, 255, 255, 0.078);
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --glass-border-hover: rgba(255, 255, 255, 0.17);
+        --glass-border-inner: rgba(255, 255, 255, 0.035);
+        --glass-shadow: 0 24px 70px rgba(0, 0, 0, 0.36), 0 2px 10px rgba(0, 0, 0, 0.18);
+
+        --surface-hover: rgba(255, 255, 255, 0.055);
+        --nav-active: rgba(255, 255, 255, 0.08);
+        --control-bg: rgba(255, 255, 255, 0.065);
+        --control-hover: rgba(255, 255, 255, 0.11);
+        --inner-surface: rgba(255, 255, 255, 0.035);
+        --inner-border: rgba(255, 255, 255, 0.06);
+        --divider: rgba(255, 255, 255, 0.08);
+        --chip-bg: rgba(255, 255, 255, 0.05);
+        --chip-border: rgba(255, 255, 255, 0.08);
+
+        --accent: #9ab7ff;
+        --accent-soft: rgba(154, 183, 255, 0.17);
+        --accent-ring: rgba(154, 183, 255, 0.34);
+        --accent-glow: rgba(154, 183, 255, 0.12);
+        --positive: #5fd396;
+        --button-shadow: rgba(0, 0, 0, 0.28);
+
+        --ambient-1: rgba(77, 127, 204, 0.16);
+        --ambient-2: rgba(211, 122, 90, 0.07);
+        --ambient-3: rgba(75, 170, 151, 0.05);
+    }
+}
+
+[data-theme="light"] { color-scheme: light; }
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --background: #0d1115;
+    --text: #f5f5f7;
+    --text-secondary: #aab3bb;
+    --muted: #7d8790;
+    --focus: #9ab7ff;
+
+    --glass-background: rgba(255, 255, 255, 0.055);
+    --glass-background-strong: rgba(255, 255, 255, 0.078);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-hover: rgba(255, 255, 255, 0.17);
+    --glass-border-inner: rgba(255, 255, 255, 0.035);
+    --glass-shadow: 0 24px 70px rgba(0, 0, 0, 0.36), 0 2px 10px rgba(0, 0, 0, 0.18);
+
+    --surface-hover: rgba(255, 255, 255, 0.055);
+    --nav-active: rgba(255, 255, 255, 0.08);
+    --control-bg: rgba(255, 255, 255, 0.065);
+    --control-hover: rgba(255, 255, 255, 0.11);
+    --inner-surface: rgba(255, 255, 255, 0.035);
+    --inner-border: rgba(255, 255, 255, 0.06);
+    --divider: rgba(255, 255, 255, 0.08);
+    --chip-bg: rgba(255, 255, 255, 0.05);
+    --chip-border: rgba(255, 255, 255, 0.08);
+
+    --accent: #9ab7ff;
+    --accent-soft: rgba(154, 183, 255, 0.17);
+    --accent-ring: rgba(154, 183, 255, 0.34);
+    --accent-glow: rgba(154, 183, 255, 0.12);
+    --positive: #5fd396;
+    --button-shadow: rgba(0, 0, 0, 0.28);
+
+    --ambient-1: rgba(77, 127, 204, 0.16);
+    --ambient-2: rgba(211, 122, 90, 0.07);
+    --ambient-3: rgba(75, 170, 151, 0.05);
+}
+
+html, body, .glass, .primary-button, .icon-button, .nav-item {
+    transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html, body, .glass, .primary-button, .icon-button, .nav-item { transition: none; }
+}

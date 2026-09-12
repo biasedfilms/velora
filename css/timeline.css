@@ -1,0 +1,239 @@
+.financial-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+    padding: 24px;
+    border: 1px solid var(--inner-border);
+    border-radius: 20px;
+    background: var(--inner-surface);
+}
+
+.financial-timeline-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.financial-timeline-heading h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.financial-timeline-heading p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: .78rem;
+}
+
+.financial-timeline-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.financial-timeline-list::before {
+    position: absolute;
+    top: 9px;
+    bottom: 9px;
+    left: 89px;
+    width: 1px;
+    background: var(--divider);
+    content: "";
+}
+
+.timeline-day {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 34px;
+}
+
+.timeline-date {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 2px;
+    text-align: right;
+}
+
+.timeline-date strong {
+    font-size: .76rem;
+    line-height: 1.3;
+}
+
+.timeline-date span {
+    color: var(--muted);
+    font-size: .68rem;
+}
+
+.timeline-events {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.timeline-event {
+    position: relative;
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 14px;
+    border: 1px solid var(--inner-border);
+    border-radius: 15px;
+    background: var(--surface);
+}
+
+.timeline-event-marker {
+    position: absolute;
+    left: -20px;
+    width: 7px;
+    height: 7px;
+    border: 2px solid var(--inner-surface);
+    border-radius: 50%;
+    background: var(--text-secondary);
+}
+
+.timeline-event.is-income .timeline-event-marker {
+    background: var(--positive);
+}
+
+.timeline-event-copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.timeline-event-copy strong {
+    overflow: hidden;
+    font-size: .8rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timeline-event-copy span {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: .7rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timeline-event-value {
+    flex: 0 0 auto;
+    font-size: .78rem;
+    font-weight: 680;
+    white-space: nowrap;
+}
+
+.timeline-event-value.positive {
+    color: var(--positive);
+}
+
+.timeline-event-meta {
+    color: var(--muted);
+    font-size: .68rem;
+}
+
+.financial-timeline-list[hidden] {
+    display: none;
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+    .financial-timeline {
+        padding: 22px;
+    }
+
+    .financial-timeline-list::before {
+        left: 82px;
+    }
+
+    .timeline-day {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .timeline-event-marker {
+        left: -19px;
+    }
+}
+
+@media (max-width: 620px) {
+    .financial-timeline {
+        margin-top: 14px;
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    .financial-timeline-heading {
+        gap: 10px;
+    }
+
+    .financial-timeline-heading h3 {
+        font-size: .92rem;
+    }
+
+    .financial-timeline-heading p {
+        font-size: .71rem;
+        line-height: 1.45;
+    }
+
+    .financial-timeline-list {
+        gap: 18px;
+    }
+
+    .financial-timeline-list::before {
+        top: 8px;
+        bottom: 8px;
+        left: 7px;
+    }
+
+    .timeline-day {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-left: 22px;
+    }
+
+    .timeline-date {
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .timeline-date strong {
+        font-size: .73rem;
+    }
+
+    .timeline-date span {
+        font-size: .65rem;
+    }
+
+    .timeline-event {
+        min-height: 58px;
+        padding: 11px 12px;
+        border-radius: 13px;
+    }
+
+    .timeline-event-marker {
+        left: -19px;
+        width: 6px;
+        height: 6px;
+    }
+
+    .timeline-event-copy strong {
+        font-size: .76rem;
+    }
+
+    .timeline-event-copy span {
+        font-size: .67rem;
+    }
+
+    .timeline-event-value {
+        font-size: .71rem;
+    }
+}

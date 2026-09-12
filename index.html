@@ -1,0 +1,3020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/192x192.png">
+    <link rel="apple-touch-icon" href="./assets/icons/192x192.png">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Velora">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#f3f4f7" id="theme-color-meta">
+    <meta name="description" content="Velora — private, local-first personal budgeting.">
+    <title>Velora</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/activity.css">
+    <link rel="stylesheet" href="css/insights.css">
+    <link rel="stylesheet" href="css/safe-to-spend.css">
+    <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/motion.css">
+    <link rel="stylesheet" href="css/polish.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar glass" aria-label="Primary navigation">
+            <div class="brand">
+                <span class="brand-copy">
+                    <span class="brand-name">Velora</span>
+                    <span class="brand-caption">Finance made easy.</span>
+                </span>
+            </div>
+
+            <div class="nav-section-label">
+                WORKSPACE
+            </div>
+
+            <nav class="nav-list">
+                <button
+                    class="nav-item is-active"
+                    data-view="overview"
+                    aria-current="page"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 11.5 12 4l9 7.5"/>
+                        <path d="M5.5 10.5V20h13v-9.5"/>
+                        <path d="M9.5 20v-5.5h5V20"/>
+                    </svg>
+
+                    <span>Overview</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="transactions"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 3v18"/>
+                        <path d="m4 6 3-3 3 3"/>
+                        <path d="M17 21V3"/>
+                        <path d="m14 18 3 3 3-3"/>
+                    </svg>
+
+                    <span>Transactions</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="budgets"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8.5"/>
+                        <path d="M12 7v5l3 2"/>
+                    </svg>
+
+                    <span>Budgets</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="recurring"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 8h12l-3-3M20 16H8l3 3"/>
+                        <path d="M16 5a7 7 0 0 1 4 6M8 19a7 7 0 0 1-4-6"/>
+                    </svg>
+
+                    <span>Recurring</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="accounts"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3.5" y="6" width="17" height="13" rx="2.5"/>
+                        <path d="M3.5 10h17"/>
+                        <path d="M16 15h2"/>
+                    </svg>
+
+                    <span>Accounts</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="goals"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 19 18 7"/>
+                        <circle cx="8" cy="8" r="3"/>
+                        <circle cx="16" cy="16" r="3"/>
+                    </svg>
+
+                    <span>Goals</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="calendar"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="4" y="5" width="16" height="15" rx="2.5"/>
+                        <path d="M8 3v4M16 3v4M4 9h16"/>
+                    </svg>
+
+                    <span>Calendar</span>
+                </button>
+
+                <button
+                    class="nav-item"
+                    data-view="insights"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 18V6"/>
+                        <path d="M4 18h16"/>
+                        <path d="m7 15 3-3 3 2 5-6"/>
+                    </svg>
+
+                    <span>Insights</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button
+                    class="nav-item"
+                    data-view="settings"
+                    type="button"
+                >
+                    <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
+                        <path d="m19.4 15 .3 2-1.8 1.8-2-.7-1.1.6-.8 1.8h-4l-.8-1.8-1.1-.6-2 .7L4.3 17l.3-2-.7-1.1-1.8-.8v-4l1.8-.8.7-1.1-.3-2 1.8-1.8 2 .7 1.1-.6.8-1.8h4l.8 1.8 1.1.6 2-.7 1.8 1.8-.3 2 .7 1.1 1.8.8v4l-1.8.8-.7 1.1Z"/>
+                    </svg>
+
+                    <span>Settings</span>
+                </button>
+
+                <button
+                    class="theme-toggle icon-button"
+                    id="theme-toggle"
+                    type="button"
+                    aria-label="Change appearance"
+                    title="Change appearance"
+                >
+                    <svg
+                        id="theme-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+                        <circle cx="12" cy="12" r="3.5"/>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="heading-group">
+                    <p
+                        class="eyebrow"
+                        id="page-eyebrow"
+                    >
+                        OVERVIEW
+                    </p>
+
+                    <h1 id="page-title" aria-live="polite">
+                        Loading…
+                    </h1>
+
+                    <p class="page-subtitle">
+                        A clear view of your money, kept private on this device.
+                    </p>
+                </div>
+
+                <div class="topbar-actions">
+                    <button
+                        class="icon-button mobile-settings-toggle"
+                        data-view="settings"
+                        type="button"
+                        aria-label="Open settings"
+                        title="Settings"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
+                            <path d="m19.4 15 .3 2-1.8 1.8-2-.7-1.1.6-.8 1.8h-4l-.8-1.8-1.1-.6-2 .7L4.3 17l.3-2-.7-1.1-1.8-.8v-4l1.8-.8.7-1.1-.3-2 1.8-1.8 2 .7 1.1-.6.8-1.8h4l.8.6 2-.7 1.8 1.8-.3 2 .7 1.1 1.8.8v4l-1.8.8-.7 1.1Z"/>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="icon-button mobile-theme-toggle"
+                        id="mobile-theme-toggle"
+                        type="button"
+                        aria-label="Change appearance"
+                        title="Change appearance"
+                    >
+                        <svg
+                            id="mobile-theme-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+                            <circle cx="12" cy="12" r="3.5"/>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        id="add-transaction"
+                        type="button"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+
+                        <span>Add transaction</span>
+                    </button>
+                </div>
+            </header>
+
+            <section
+                class="view"
+                id="app-view"
+                aria-live="polite"
+            >
+                <section class="hero-grid dashboard-section">
+                    <article class="glass hero-card spotlight-card">
+                        <div
+                            class="spotlight-glow"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div class="card-topline">
+                            <div class="card-label">
+                                TOTAL BALANCE
+                            </div>
+
+                            <span class="soft-badge">
+                                LOCAL
+                            </span>
+                        </div>
+
+                        <div
+                            class="balance-value"
+                            id="total-balance"
+                        >
+                            Rp 0
+                        </div>
+
+                        <div class="card-footer-line">
+                            <span class="muted">
+                                Across all accounts
+                            </span>
+
+                            <span class="secure-note">
+                                <span class="secure-dot"></span>
+                                Stored here
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="glass stat-card">
+                        <div class="card-topline">
+                            <div class="card-label">
+                                THIS MONTH
+                            </div>
+
+                            <span
+                                class="date-chip"
+                                id="current-month-label"
+                            >
+                                September 2026
+                            </span>
+                        </div>
+
+                        <div class="stat-stack">
+                            <div class="stat-block">
+                                <span class="stat-label">
+                                    Income
+                                </span>
+
+                                <strong
+                                    class="positive"
+                                    id="monthly-income"
+                                >
+                                    Rp 0
+                                </strong>
+                            </div>
+
+                            <div class="stat-divider"></div>
+
+                            <div class="stat-block">
+                                <span class="stat-label">
+                                    Expenses
+                                </span>
+
+                                <strong id="monthly-expenses">
+                                    Rp 0
+                                </strong>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="glass safe-card dashboard-section">
+                    <div class="safe-copy">
+                        <div class="card-topline">
+                            <div class="card-label">
+                                SAFE TO SPEND
+                            </div>
+
+                            <button
+                                class="info-badge"
+                                id="safe-to-spend-toggle"
+                                type="button"
+                                aria-label="Show Safe to Spend breakdown"
+                                aria-expanded="false"
+                            >
+                                i
+                            </button>
+                        </div>
+
+                        <div
+                            class="safe-value"
+                            id="safe-to-spend-value"
+                        >
+                            Rp 0
+                        </div>
+
+                        <p
+                            class="safe-description"
+                            id="safe-to-spend-description"
+                        >
+                            Based on your current balance and planned commitments.
+                        </p>
+
+                        <div
+                            class="safe-to-spend-details"
+                            id="safe-to-spend-details"
+                            hidden
+                        >
+                            <div class="safe-detail-row">
+                                <span>Current balance</span>
+                                <strong id="safe-to-spend-balance">
+                                    Rp 0
+                                </strong>
+                            </div>
+
+                            <div class="safe-detail-row">
+                                <span>Recurring commitments</span>
+                                <strong id="safe-to-spend-recurring">
+                                    Rp 0
+                                </strong>
+                            </div>
+
+                            <div class="safe-detail-row">
+                                <span>Remaining budgets</span>
+                                <strong id="safe-to-spend-budgets">
+                                    Rp 0
+                                </strong>
+                            </div>
+
+                            <div class="safe-detail-row">
+                                <span>Planned savings</span>
+                                <strong id="safe-to-spend-savings">
+                                    Rp 0
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="safe-rings"
+                        aria-hidden="true"
+                    >
+                        <div class="safe-ring-outer">
+                            <div class="safe-ring-mid">
+                                <div class="safe-ring-inner">
+                                    <div class="safe-core">
+                                        <span>READY</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dashboard-grid dashboard-section">
+                    <article class="glass panel">
+                        <div class="panel-header">
+                            <div>
+                                <div class="card-label">
+                                    RECENT ACTIVITY
+                                </div>
+
+                                <h2>
+                                    Latest transactions
+                                </h2>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                data-view="transactions"
+                            >
+                                View all
+                            </button>
+                        </div>
+
+                        <div
+                            class="transaction-list"
+                            id="recent-transactions"
+                            aria-live="polite"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="recent-transactions-empty"
+                            hidden
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 6.5h14M5 12h9M5 17.5h6"/>
+                                    <circle cx="18" cy="17" r="2.5"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                Your latest transactions will appear here.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="glass panel">
+                        <div class="panel-header">
+                            <div>
+                                <div class="card-label">
+                                    BUDGETS
+                                </div>
+
+                                <h2 id="budget-preview-title">
+                                    Monthly overview
+                                </h2>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                data-view="budgets"
+                            >
+                                View budgets
+                            </button>
+                        </div>
+
+                        <div
+                            class="budget-preview"
+                            id="budget-preview-list"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="budget-preview-empty"
+                            hidden
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="8.5"/>
+                                    <path d="M12 7v5l3 2"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                Create a budget to start planning your month.
+                            </p>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="dashboard-grid dashboard-section">
+                    <article class="glass panel">
+                        <div class="panel-header">
+                            <div>
+                                <div class="card-label">
+                                    RECURRING
+                                </div>
+
+                                <h2 id="recurring-preview-title">
+                                    Upcoming commitments
+                                </h2>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                data-view="recurring"
+                            >
+                                View recurring
+                            </button>
+                        </div>
+
+                        <div
+                            class="recurring-preview"
+                            id="recurring-preview-list"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="recurring-preview-empty"
+                            hidden
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 8h12l-3-3M20 16H8l3 3"/>
+                                    <path d="M16 5a7 7 0 0 1 4 6M8 19a7 7 0 0 1-4-6"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                Add a recurring expense to keep future commitments visible.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="glass panel goals-preview-panel">
+                        <div class="panel-header">
+                            <div>
+                                <div class="card-label">
+                                    GOALS
+                                </div>
+
+                                <h2 id="goals-preview-title">
+                                    No goals yet
+                                </h2>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                data-view="goals"
+                            >
+                                View all
+                            </button>
+                        </div>
+
+                        <div
+                            class="goal-preview-list"
+                            id="goals-preview-list"
+                            hidden
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="goals-preview-empty"
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 19V8l7-4 7 4v11"/>
+                                    <path d="M9 19v-6h6v6"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                Create a savings goal to track something meaningful.
+                            </p>
+                        </div>
+                    </article>
+                </section>
+
+                <section
+                    class="glass panel categories-panel"
+                    id="categories-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                CATEGORIES
+                            </div>
+
+                            <h2>
+                                Your categories
+                            </h2>
+                        </div>
+
+                        <button
+                            class="primary-button compact-button"
+                            id="add-category"
+                            type="button"
+                            aria-label="New category"
+                            title="New category"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+
+                            <span>New category</span>
+                        </button>
+                    </div>
+
+                    <div
+                        class="category-list"
+                        id="category-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <p
+                        class="form-message"
+                        id="category-list-message"
+                        role="status"
+                        hidden
+                    ></p>
+                </section>
+
+                <section
+                    class="glass panel accounts-panel"
+                    id="accounts-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                ACCOUNTS
+                            </div>
+
+                            <h2>
+                                Your accounts
+                            </h2>
+                        </div>
+
+                        <button
+                            class="primary-button compact-button"
+                            id="add-account"
+                            type="button"
+                            aria-label="New account"
+                            title="New account"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+
+                            <span>New account</span>
+                        </button>
+                    </div>
+
+                    <div class="account-summary">
+                        <div>
+                            <span class="card-label">
+                                ACCOUNTS
+                            </span>
+
+                            <strong id="account-summary-count">
+                                0 accounts
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span class="card-label">
+                                TOTAL
+                            </span>
+
+                            <strong id="account-summary-total">
+                                Rp 0
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div
+                        class="account-list"
+                        id="account-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <div
+                        class="empty-state"
+                        id="account-empty-state"
+                        hidden
+                    >
+                        <span class="empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="4" y="6" width="16" height="13" rx="2.5"/>
+                                <path d="M4 10h16"/>
+                            </svg>
+                        </span>
+
+                        <div class="empty-copy">
+                            <p class="empty-title">
+                                No accounts yet
+                            </p>
+
+                            <p class="muted">
+                                Add an account to keep balances organized.
+                            </p>
+
+                            <button
+                                class="secondary-button empty-action"
+                                type="button"
+                                data-open-account
+                            >
+                                Add account
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="glass panel budgets-panel"
+                    id="budgets-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                BUDGETS
+                            </div>
+
+                            <h2 id="budget-month-label">
+                                September 2026
+                            </h2>
+                        </div>
+
+                        <button
+                            class="primary-button compact-button"
+                            id="add-budget"
+                            type="button"
+                            aria-label="New budget"
+                            title="New budget"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+
+                            <span>New budget</span>
+                        </button>
+                    </div>
+
+                    <div class="month-nav">
+                        <button
+                            class="icon-button small-icon"
+                            id="previous-budget-month"
+                            type="button"
+                            aria-label="Previous month"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m14 5-7 7 7 7"/>
+                            </svg>
+                        </button>
+
+                        <span id="budget-month-control">
+                            September 2026
+                        </span>
+
+                        <button
+                            class="icon-button small-icon"
+                            id="next-budget-month"
+                            type="button"
+                            aria-label="Next month"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m10 5 7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div
+                        class="budget-list"
+                        id="budget-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <div
+                        class="empty-state"
+                        id="budget-empty-state"
+                        hidden
+                    >
+                        <span class="empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="7.5"/>
+                                <path d="M12 8v4l2.7 1.7"/>
+                            </svg>
+                        </span>
+
+                        <div class="empty-copy">
+                            <p class="empty-title">
+                                No budgets for this month
+                            </p>
+
+                            <p class="muted">
+                                Add a category limit to make a simple plan.
+                            </p>
+
+                            <button
+                                class="secondary-button empty-action"
+                                type="button"
+                                data-open-budget
+                            >
+                                Add budget
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="glass panel recurring-panel"
+                    id="recurring-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                RECURRING EXPENSES
+                            </div>
+
+                            <h2>
+                                Your upcoming commitments
+                            </h2>
+                        </div>
+
+                        <button
+                            class="primary-button compact-button"
+                            id="add-recurring"
+                            type="button"
+                            aria-label="New recurring expense"
+                            title="New recurring expense"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+
+                            <span>New recurring</span>
+                        </button>
+                    </div>
+
+                    <div
+                        class="recurring-list"
+                        id="recurring-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <div
+                        class="empty-state"
+                        id="recurring-empty-state"
+                        hidden
+                    >
+                        <span class="empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6 8h12M6 12h8M6 16h5"/>
+                                <path d="M17 15v5M14.5 17.5h5"/>
+                            </svg>
+                        </span>
+
+                        <div class="empty-copy">
+                            <p class="empty-title">
+                                No recurring expenses yet
+                            </p>
+
+                            <p class="muted">
+                                Keep predictable commitments visible without
+                                creating paid transactions.
+                            </p>
+
+                            <button
+                                class="secondary-button empty-action"
+                                type="button"
+                                data-open-recurring
+                            >
+                                Add recurring expense
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="glass panel calendar-panel"
+                    id="calendar-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                CALENDAR
+                            </div>
+
+                            <h2 id="calendar-month-label">
+                                September 2026
+                            </h2>
+                        </div>
+
+                        <div class="calendar-actions">
+                            <button
+                                class="icon-button small-icon"
+                                id="previous-calendar-month"
+                                type="button"
+                                aria-label="Previous month"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m14 5-7 7 7 7"/>
+                                </svg>
+                            </button>
+
+                            <button
+                                class="secondary-button compact-button"
+                                id="today-calendar"
+                                type="button"
+                            >
+                                Today
+                            </button>
+
+                            <button
+                                class="icon-button small-icon"
+                                id="next-calendar-month"
+                                type="button"
+                                aria-label="Next month"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m10 5 7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="calendar-weekdays"
+                        aria-hidden="true"
+                    >
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                    </div>
+
+                    <div
+                        class="calendar-grid"
+                        id="calendar-grid"
+                        aria-label="Monthly calendar"
+                    ></div>
+
+                    <div
+                        class="calendar-legend"
+                        aria-label="Calendar indicators"
+                    >
+                        <span class="calendar-legend-item">
+                            <span
+                                class="calendar-indicator is-income"
+                                aria-hidden="true"
+                            ></span>
+
+                            Income
+                        </span>
+
+                        <span class="calendar-legend-item">
+                            <span
+                                class="calendar-indicator is-expense"
+                                aria-hidden="true"
+                            ></span>
+
+                            Expense
+                        </span>
+                    </div>
+
+                    <div class="calendar-day-panel">
+                        <div class="panel-header">
+                            <div>
+                                <div class="card-label">
+                                    SELECTED DAY
+                                </div>
+
+                                <h2 id="calendar-selected-date">
+                                    Today
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div
+                            class="calendar-day-list"
+                            id="calendar-day-list"
+                            aria-live="polite"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="calendar-day-empty"
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 6.5h14M5 12h9M5 17.5h6"/>
+                                    <circle cx="18" cy="17" r="2.5"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                No transactions on this day.
+                            </p>
+                        </div>
+                    </div>
+
+                    <section class="financial-timeline">
+                        <div class="financial-timeline-heading">
+                            <div>
+                                <div class="card-label">
+                                    FINANCIAL TIMELINE
+                                </div>
+
+                                <h3>
+                                    Your month, in context.
+                                </h3>
+
+                                <p>
+                                    Transactions, recurring commitments and savings targets in one place.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="financial-timeline-list"
+                            id="financial-timeline-list"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="financial-timeline-empty"
+                            hidden
+                        >
+                            <span class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 6.5h14M5 12h9M5 17.5h6"/>
+                                    <circle cx="18" cy="17" r="2.5"/>
+                                </svg>
+                            </span>
+
+                            <p class="muted">
+                                No financial events recorded for this month.
+                            </p>
+                        </div>
+                    </section>
+                </section>
+
+                <section
+                    class="glass panel goals-panel"
+                    id="goals-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                SAVINGS GOALS
+                            </div>
+
+                            <h2>
+                                Your goals
+                            </h2>
+                        </div>
+
+                        <button
+                            class="primary-button compact-button"
+                            id="add-goal"
+                            type="button"
+                            aria-label="New savings goal"
+                            title="New savings goal"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+
+                            <span>New goal</span>
+                        </button>
+                    </div>
+
+                    <div
+                        class="goal-list"
+                        id="goal-list"
+                        aria-live="polite"
+                    ></div>
+
+                    <div
+                        class="empty-state"
+                        id="goal-empty-state"
+                        hidden
+                    >
+                        <span class="empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 19V8l7-4 7 4v11"/>
+                                <path d="M9 19v-6h6v6"/>
+                            </svg>
+                        </span>
+
+                        <div class="empty-copy">
+                            <p class="empty-title">
+                                No savings goals yet
+                            </p>
+
+                            <p class="muted">
+                                Create a target and watch your progress grow.
+                            </p>
+
+                            <button
+                                class="secondary-button empty-action"
+                                type="button"
+                                data-open-goal
+                            >
+                                Add savings goal
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="glass panel insights-panel"
+                    id="insights-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                INSIGHTS
+                            </div>
+
+                            <h2 id="insights-month-label">
+                                September 2026
+                            </h2>
+                        </div>
+
+                        <div class="insights-month-controls">
+                            <button
+                                class="icon-button small-icon"
+                                id="previous-insights-month"
+                                type="button"
+                                aria-label="Previous month"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m14 5-7 7 7 7"/>
+                                </svg>
+                            </button>
+
+                            <button
+                                class="icon-button small-icon"
+                                id="next-insights-month"
+                                type="button"
+                                aria-label="Next month"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="m10 5 7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="insights-summary">
+                        <article class="insights-summary-card">
+                            <span>
+                                Income
+                            </span>
+
+                            <strong
+                                class="positive"
+                                id="insights-income"
+                            >
+                                Rp 0
+                            </strong>
+                        </article>
+
+                        <article class="insights-summary-card">
+                            <span>
+                                Expenses
+                            </span>
+
+                            <strong id="insights-expenses">
+                                Rp 0
+                            </strong>
+                        </article>
+
+                        <article class="insights-summary-card">
+                            <span>
+                                Net
+                            </span>
+
+                            <strong id="insights-net">
+                                Rp 0
+                            </strong>
+                        </article>
+                    </div>
+
+                    <article class="insights-trend-card">
+                        <div class="insights-card-heading">
+                            <div>
+                                <h3>
+                                    Spending trend
+                                </h3>
+
+                                <strong
+                                    class="insights-trend-total"
+                                    id="insights-trend-total"
+                                >
+                                    Rp 0
+                                </strong>
+
+                                <p
+                                    class="insights-comparison"
+                                    id="insights-comparison"
+                                >
+                                    Add transactions to start seeing trends.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="insights-chart-wrap">
+                            <div
+                                class="insights-chart-tooltip"
+                                id="insights-chart-tooltip"
+                                hidden
+                            ></div>
+
+                            <div
+                                class="insights-chart"
+                                id="spending-trend-chart"
+                            ></div>
+                        </div>
+
+                        <div
+                            class="insights-trend-labels"
+                            id="spending-trend-labels"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="insights-empty"
+                            hidden
+                        >
+                            <p class="muted">
+                                No transactions recorded for this period.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="insights-category-card">
+                        <div class="insights-card-heading">
+                            <div>
+                                <h3>
+                                    Spending by category
+                                </h3>
+
+                                <p class="muted">
+                                    Your largest expense categories this month.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="insights-category-list"
+                            id="insights-category-list"
+                        ></div>
+                    </article>
+
+                    <article class="personalized-insights-card">
+                        <div class="personalized-insights-heading">
+                            <h3>
+                                Personalized insights
+                            </h3>
+
+                            <p>
+                                Useful signals from your actual financial activity.
+                            </p>
+                        </div>
+
+                        <div
+                            class="personalized-insight-list"
+                            id="insights-personalized-list"
+                        ></div>
+
+                        <div
+                            class="empty-state compact"
+                            id="insights-personalized-empty"
+                            hidden
+                        >
+                            <p class="muted">
+                                Add more financial activity to unlock personalized insights.
+                            </p>
+                        </div>
+                    </article>
+                </section>
+
+                <section
+                    class="glass panel settings-panel"
+                    id="settings-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                DATA & PRIVACY
+                            </div>
+
+                            <h2>
+                                Your data stays yours.
+                            </h2>
+
+                            <p class="muted">
+                                Velora stores your financial data locally in this browser. Create a backup before switching devices or clearing browser data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid">
+                        <article class="settings-card">
+                            <div class="settings-card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 3v12"/>
+                                    <path d="m7 10 5 5 5-5"/>
+                                    <path d="M5 21h14"/>
+                                </svg>
+                            </div>
+
+                            <div class="settings-card-copy">
+                                <h3>Backup your data</h3>
+                                <p class="muted">
+                                    Export transactions, accounts, categories, budgets, recurring expenses, goals and settings to one portable JSON file.
+                                </p>
+                            </div>
+
+                            <button
+                                class="primary-button"
+                                id="backup-export"
+                                type="button"
+                            >
+                                Export backup
+                            </button>
+                        </article>
+
+                        <article class="settings-card">
+                            <div class="settings-card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 21V9"/>
+                                    <path d="m7 12 5-5 5 5"/>
+                                    <path d="M5 3h14"/>
+                                </svg>
+                            </div>
+
+                            <div class="settings-card-copy">
+                                <h3>Restore a backup</h3>
+                                <p class="muted">
+                                    Import a Velora backup from this or another device. Your current local data will be replaced after confirmation.
+                                </p>
+                            </div>
+
+                            <input
+                                id="backup-file-input"
+                                type="file"
+                                accept="application/json,.json"
+                                hidden
+                            >
+
+                            <button
+                                class="secondary-button"
+                                id="backup-import"
+                                type="button"
+                            >
+                                Import backup
+                            </button>
+                        </article>
+
+                        <article class="settings-card">
+                            <div class="settings-card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 4h14v16H5z"/>
+                                    <path d="M8 8h8M8 12h8M8 16h5"/>
+                                </svg>
+                            </div>
+
+                            <div class="settings-card-copy">
+                                <h3>Export transactions</h3>
+                                <p class="muted">
+                                    Export your transaction history as a CSV file for Excel, Numbers, Google Sheets, or your own records.
+                                </p>
+                            </div>
+
+                            <button
+                                class="secondary-button"
+                                id="csv-export"
+                                type="button"
+                            >
+                                Export CSV
+                            </button>
+                        </article>
+
+                        <article class="settings-card settings-card-danger">
+                            <div class="settings-card-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 7h16"/>
+                                    <path d="M9 7V4h6v3"/>
+                                    <path d="m7 7 1 13h8l1-13"/>
+                                    <path d="M10 11v5M14 11v5"/>
+                                </svg>
+                            </div>
+
+                            <div class="settings-card-copy">
+                                <h3>Delete all local data</h3>
+                                <p class="muted">
+                                    Permanently remove Velora data from this browser. Export a backup first. This cannot be undone.
+                                </p>
+                            </div>
+
+                            <button
+                                class="danger-button"
+                                id="data-reset"
+                                type="button"
+                            >
+                                Delete all data
+                            </button>
+                        </article>
+                    </div>
+
+                    <p
+                        class="settings-backup-details muted"
+                        id="backup-details"
+                        hidden
+                    ></p>
+
+                    <p
+                        class="form-message"
+                        id="backup-status"
+                        role="status"
+                        hidden
+                    ></p>
+
+                    <p class="settings-footnote muted">
+                        Backup files are not uploaded anywhere by Velora. Keep your backup in a safe place because it contains your financial records.
+                    </p>
+                </section>
+
+                <section
+                    class="glass panel activity-panel"
+                    id="activity-panel"
+                    hidden
+                >
+                    <div class="panel-header">
+                        <div>
+                            <div class="card-label">
+                                ACTIVITY
+                            </div>
+
+                            <h2>
+                                Your transactions.
+                            </h2>
+
+                            <p class="muted">
+                                Every record stays on this device.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="activity-toolbar">
+                        <label
+                            class="activity-search"
+                            for="activity-search"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="6.5"/>
+                                <path d="m16 16 4.5 4.5"/>
+                            </svg>
+
+                            <input
+                                id="activity-search"
+                                type="search"
+                                placeholder="Search transactions"
+                                autocomplete="off"
+                            >
+                        </label>
+
+                        <div
+                            class="activity-filters"
+                            role="group"
+                            aria-label="Transaction filters"
+                        >
+                            <button
+                                class="filter-button is-active"
+                                data-activity-filter="all"
+                                type="button"
+                            >
+                                All
+                            </button>
+
+                            <button
+                                class="filter-button"
+                                data-activity-filter="income"
+                                type="button"
+                            >
+                                Income
+                            </button>
+
+                            <button
+                                class="filter-button"
+                                data-activity-filter="expense"
+                                type="button"
+                            >
+                                Expenses
+                            </button>
+                        </div>
+
+                        <span
+                            class="activity-count"
+                            id="activity-count"
+                        >
+                            0 transactions
+                        </span>
+                    </div>
+
+                    <div
+                        class="activity-list"
+                        id="activity-list"
+                    ></div>
+
+                    <div
+                        class="empty-state"
+                        id="activity-empty"
+                        hidden
+                    >
+                        <span class="empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 6.5h14M5 12h9M5 17.5h6"/>
+                                <circle cx="18" cy="17" r="2.5"/>
+                            </svg>
+                        </span>
+
+                        <div class="empty-copy">
+                            <p class="empty-title">
+                                No transactions found
+                            </p>
+
+                            <p class="muted">
+                                Try another search or add a new transaction.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <nav
+        class="mobile-nav glass"
+        aria-label="Mobile navigation"
+    >
+        <button
+            class="mobile-nav-item is-active"
+            data-view="overview"
+            type="button"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 11.5 12 4l9 7.5"/>
+                <path d="M5.5 10.5V20h13v-9.5"/>
+                <path d="M9.5 20v-5.5h5V20"/>
+            </svg>
+
+            <span>Home</span>
+        </button>
+
+        <button
+            class="mobile-nav-item"
+            data-view="transactions"
+            type="button"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3v18"/>
+                <path d="m4 6 3-3 3 3"/>
+                <path d="M17 21V3"/>
+                <path d="m14 18 3 3 3-3"/>
+            </svg>
+
+            <span>Activity</span>
+        </button>
+
+        <button
+            class="mobile-nav-item"
+            data-view="budgets"
+            type="button"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5"/>
+                <path d="M12 7v5l3 2"/>
+            </svg>
+
+            <span>Budgets</span>
+        </button>
+
+        <button
+            class="mobile-nav-item"
+            data-view="recurring"
+            type="button"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8h12l-3-3M20 16H8l3 3"/>
+                <path d="M16 5a7 7 0 0 1 4 6M8 19a7 7 0 0 1-4-6"/>
+            </svg>
+
+            <span>Recurring</span>
+        </button>
+
+        <button
+            class="mobile-nav-item"
+            data-view="calendar"
+            type="button"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="15" rx="2.5"/>
+                <path d="M8 3v4M16 3v4M4 9h16"/>
+            </svg>
+
+            <span>Calendar</span>
+        </button>
+
+        <button
+            class="mobile-nav-item mobile-more-toggle"
+            id="mobile-more-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-more-sheet"
+        >
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+            </svg>
+
+            <span>More</span>
+        </button>
+    </nav>
+
+    <div
+        class="sheet-backdrop mobile-more-backdrop"
+        id="mobile-more-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="mobile-more-sheet glass"
+        id="mobile-more-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-more-title"
+        hidden
+    >
+        <div class="mobile-more-header">
+            <div>
+                <p class="eyebrow">MORE</p>
+                <h2 id="mobile-more-title">More of Velora</h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-mobile-more"
+                type="button"
+                aria-label="Close more menu"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-more-grid">
+            <button class="mobile-more-item" data-view="accounts" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3.5" y="6" width="17" height="13" rx="2.5"/>
+                    <path d="M3.5 10h17"/>
+                    <path d="M16 15h2"/>
+                </svg>
+                <span>Accounts</span>
+            </button>
+
+            <button class="mobile-more-item" data-view="goals" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 19 18 7"/>
+                    <circle cx="8" cy="8" r="3"/>
+                    <circle cx="16" cy="16" r="3"/>
+                </svg>
+                <span>Goals</span>
+            </button>
+
+            <button class="mobile-more-item" data-view="insights" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 18V6"/>
+                    <path d="M4 18h16"/>
+                    <path d="m7 15 3-3 3 2 5-6"/>
+                </svg>
+                <span>Insights</span>
+            </button>
+
+            <button class="mobile-more-item" data-view="settings" type="button">
+                <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
+                    <path d="m19.4 15 .3 2-1.8 1.8-2-.7-1.1.6-.8 1.8h-4l-.8-1.8-1.1-.6-2 .7L4.3 17l.3-2-.7-1.1-1.8-.8v-4l1.8-.8.7-1.1-.3-2 1.8-1.8 2 .7 1.1-.6.8-1.8h4l.8 1.8 1.1.6 2-.7 1.8 1.8-.3 2 .7 1.1 1.8.8v4l-1.8.8-.7 1.1Z"/>
+                </svg>
+                <span>Settings</span>
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="transaction-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="transaction-sheet glass"
+        id="transaction-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="transaction-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="transaction-sheet-eyebrow"
+                >
+                    NEW TRANSACTION
+                </p>
+
+                <h2 id="transaction-sheet-title">
+                    Add transaction
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-transaction"
+                type="button"
+                aria-label="Close transaction form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="transaction-form" novalidate>
+            <fieldset class="type-switch">
+                <legend>
+                    Type
+                </legend>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="type"
+                        value="expense"
+                        checked
+                    >
+
+                    <span>
+                        Expense
+                    </span>
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="type"
+                        value="income"
+                    >
+
+                    <span>
+                        Income
+                    </span>
+                </label>
+            </fieldset>
+
+            <div class="form-field amount-field">
+                <label for="transaction-amount">
+                    Amount
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="transaction-amount"
+                        name="amount"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                        aria-describedby="transaction-form-message"
+                    >
+                </div>
+            </div>
+
+            <fieldset class="category-field">
+                <legend>
+                    Category
+                </legend>
+
+                <div
+                    class="category-options"
+                    id="category-options"
+                >
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Food"
+                        >
+
+                        <span>
+                            Food
+                        </span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Shopping"
+                        >
+
+                        <span>
+                            Shopping
+                        </span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Transport"
+                        >
+
+                        <span>
+                            Transport
+                        </span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Bills"
+                        >
+
+                        <span>
+                            Bills
+                        </span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Health"
+                        >
+
+                        <span>
+                            Health
+                        </span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="category"
+                            value="Other"
+                        >
+
+                        <span>
+                            Other
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <details class="more-options">
+                <summary>
+                    More options
+                </summary>
+
+                <div class="optional-fields">
+                    <div class="form-field">
+                        <label for="transaction-account">
+                            Account
+                            <span>Optional</span>
+                        </label>
+
+                        <select
+                            id="transaction-account"
+                            name="account"
+                        >
+                            <option value="">
+                                No account
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="transaction-date">
+                            Date
+                        </label>
+
+                        <input
+                            id="transaction-date"
+                            name="date"
+                            type="date"
+                        >
+                    </div>
+
+                    <div class="form-field description-field">
+                        <label for="transaction-description">
+                            Description
+                            <span>Optional</span>
+                        </label>
+
+                        <input
+                            id="transaction-description"
+                            name="description"
+                            type="text"
+                            maxlength="160"
+                            placeholder="What was this for?"
+                        >
+                    </div>
+                </div>
+            </details>
+
+            <p
+                class="form-message"
+                id="transaction-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-transaction"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span>
+                        Save transaction
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="confirm-dialog glass"
+        id="delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-dialog-title"
+        hidden
+    >
+        <h2 id="delete-dialog-title">
+            Delete transaction?
+        </h2>
+
+        <p class="muted">
+            This transaction will be removed from this device.
+        </p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-delete"
+                type="button"
+            >
+                Keep it
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="category-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="category-sheet glass"
+        id="category-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="category-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="category-sheet-eyebrow"
+                >
+                    NEW CATEGORY
+                </p>
+
+                <h2 id="category-sheet-title">
+                    New category
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-category"
+                type="button"
+                aria-label="Close category form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="category-form" novalidate>
+            <div class="form-field">
+                <label for="category-name">
+                    Name
+                </label>
+
+                <input
+                    id="category-name"
+                    name="name"
+                    type="text"
+                    maxlength="40"
+                    autocomplete="off"
+                    placeholder="e.g. Photography"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="category-icon">
+                    Icon
+                </label>
+
+                <input
+                    id="category-icon"
+                    name="icon"
+                    type="text"
+                    maxlength="4"
+                    autocomplete="off"
+                    placeholder="✦"
+                >
+            </div>
+
+            <p
+                class="form-message"
+                id="category-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-category"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span id="category-submit-label">
+                        Create category
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="confirm-dialog glass"
+        id="category-delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="category-delete-title"
+        hidden
+    >
+        <h2 id="category-delete-title">
+            Delete category?
+        </h2>
+
+        <p
+            class="muted"
+            id="category-delete-message"
+        ></p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-category-delete"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-category-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="account-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="category-sheet glass"
+        id="account-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="account-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="account-sheet-eyebrow"
+                >
+                    NEW ACCOUNT
+                </p>
+
+                <h2 id="account-sheet-title">
+                    New account
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-account"
+                type="button"
+                aria-label="Close account form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="account-form" novalidate>
+            <div class="form-field">
+                <label for="account-name">
+                    Account name
+                </label>
+
+                <input
+                    id="account-name"
+                    name="name"
+                    type="text"
+                    maxlength="60"
+                    autocomplete="off"
+                    placeholder="e.g. Main Bank"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="account-type">
+                    Type
+                </label>
+
+                <select
+                    id="account-type"
+                    name="type"
+                >
+                    <option value="bank">
+                        Bank
+                    </option>
+
+                    <option value="cash">
+                        Cash
+                    </option>
+
+                    <option value="wallet">
+                        Wallet
+                    </option>
+
+                    <option value="savings">
+                        Savings
+                    </option>
+
+                    <option value="card">
+                        Card
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="account-initial-balance">
+                    Initial balance
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="account-initial-balance"
+                        name="initialBalance"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                    >
+                </div>
+            </div>
+
+            <p
+                class="form-message"
+                id="account-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-account"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span id="account-submit-label">
+                        Create account
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="confirm-dialog glass"
+        id="account-delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="account-delete-title"
+        hidden
+    >
+        <h2 id="account-delete-title">
+            Delete account?
+        </h2>
+
+        <p
+            class="muted"
+            id="account-delete-message"
+        ></p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-account-delete"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-account-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="budget-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="category-sheet glass"
+        id="budget-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="budget-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="budget-sheet-eyebrow"
+                >
+                    NEW BUDGET
+                </p>
+
+                <h2 id="budget-sheet-title">
+                    New budget
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-budget"
+                type="button"
+                aria-label="Close budget form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="budget-form" novalidate>
+            <div class="form-field">
+                <label for="budget-category">
+                    Category
+                </label>
+
+                <select
+                    id="budget-category"
+                    name="categoryId"
+                ></select>
+            </div>
+
+            <div class="form-field">
+                <label for="budget-limit">
+                    Monthly limit
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="budget-limit"
+                        name="limit"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                    >
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="budget-month">
+                    Month
+                </label>
+
+                <input
+                    id="budget-month"
+                    name="month"
+                    type="month"
+                >
+            </div>
+
+            <p
+                class="form-message"
+                id="budget-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-budget"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span id="budget-submit-label">
+                        Create budget
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="confirm-dialog glass"
+        id="budget-delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="budget-delete-title"
+        hidden
+    >
+        <h2 id="budget-delete-title">
+            Delete budget?
+        </h2>
+
+        <p
+            class="muted"
+            id="budget-delete-message"
+        >
+            This budget will be removed from this device.
+        </p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-budget-delete"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-budget-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="recurring-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="category-sheet glass"
+        id="recurring-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="recurring-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="recurring-sheet-eyebrow"
+                >
+                    NEW RECURRING EXPENSE
+                </p>
+
+                <h2 id="recurring-sheet-title">
+                    New recurring expense
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-recurring"
+                type="button"
+                aria-label="Close recurring form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="recurring-form" novalidate>
+            <div class="form-field">
+                <label for="recurring-name">
+                    Name
+                </label>
+
+                <input
+                    id="recurring-name"
+                    name="name"
+                    type="text"
+                    maxlength="60"
+                    autocomplete="off"
+                    placeholder="e.g. Internet"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-amount">
+                    Amount
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="recurring-amount"
+                        name="amount"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                    >
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-category">
+                    Category
+                </label>
+
+                <select
+                    id="recurring-category"
+                    name="categoryId"
+                ></select>
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-account">
+                    Account
+                    <span>Optional</span>
+                </label>
+
+                <select
+                    id="recurring-account"
+                    name="accountId"
+                >
+                    <option value="">
+                        No account
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-frequency">
+                    Frequency
+                </label>
+
+                <select
+                    id="recurring-frequency"
+                    name="frequency"
+                >
+                    <option value="monthly">
+                        Monthly
+                    </option>
+
+                    <option value="weekly">
+                        Weekly
+                    </option>
+
+                    <option value="yearly">
+                        Yearly
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-start-date">
+                    Start date
+                </label>
+
+                <input
+                    id="recurring-start-date"
+                    name="startDate"
+                    type="date"
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="recurring-description">
+                    Description
+                    <span>Optional</span>
+                </label>
+
+                <input
+                    id="recurring-description"
+                    name="description"
+                    type="text"
+                    maxlength="160"
+                    placeholder="Optional note"
+                >
+            </div>
+
+            <p
+                class="form-message"
+                id="recurring-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-recurring"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span id="recurring-submit-label">
+                        Create recurring
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="confirm-dialog glass"
+        id="recurring-delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="recurring-delete-title"
+        hidden
+    >
+        <h2 id="recurring-delete-title">
+            Delete recurring expense?
+        </h2>
+
+        <p
+            class="muted"
+            id="recurring-delete-message"
+        >
+            This recurring expense will be removed from this device.
+        </p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-recurring-delete"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-recurring-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="sheet-backdrop"
+        id="goal-backdrop"
+        hidden
+    ></div>
+
+    <section
+        class="category-sheet glass"
+        id="goal-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="goal-sheet-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <p
+                    class="eyebrow"
+                    id="goal-sheet-eyebrow"
+                >
+                    NEW SAVINGS GOAL
+                </p>
+
+                <h2 id="goal-sheet-title">
+                    New savings goal
+                </h2>
+            </div>
+
+            <button
+                class="icon-button"
+                id="close-goal"
+                type="button"
+                aria-label="Close goal form"
+                title="Close"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </div>
+
+        <form id="goal-form" novalidate>
+            <div class="form-field">
+                <label for="goal-name">
+                    Goal name
+                </label>
+
+                <input
+                    id="goal-name"
+                    name="name"
+                    type="text"
+                    maxlength="60"
+                    autocomplete="off"
+                    placeholder="e.g. New MacBook"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="goal-target-amount">
+                    Target amount
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="goal-target-amount"
+                        name="targetAmount"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                    >
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="goal-current-amount">
+                    Current amount
+                </label>
+
+                <div class="amount-input">
+                    <span aria-hidden="true">
+                        Rp
+                    </span>
+
+                    <input
+                        id="goal-current-amount"
+                        name="currentAmount"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="0"
+                    >
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="goal-target-date">
+                    Target date
+                    <span>Optional</span>
+                </label>
+
+                <input
+                    id="goal-target-date"
+                    name="targetDate"
+                    type="date"
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="goal-account">
+                    Account
+                    <span>Optional</span>
+                </label>
+
+                <select
+                    id="goal-account"
+                    name="accountId"
+                >
+                    <option value="">
+                        No account
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="goal-description">
+                    Description
+                    <span>Optional</span>
+                </label>
+
+                <input
+                    id="goal-description"
+                    name="description"
+                    type="text"
+                    maxlength="160"
+                    placeholder="What are you saving for?"
+                >
+            </div>
+
+            <p
+                class="form-message"
+                id="goal-form-message"
+                role="alert"
+            ></p>
+
+            <div class="sheet-actions">
+                <button
+                    class="secondary-button"
+                    id="cancel-goal"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    <span id="goal-submit-label">
+                        Create goal
+                    </span>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section
+        class="sheet-backdrop"
+        id="onboarding-backdrop"
+        hidden
+        aria-hidden="true"
+    ></section>
+
+    <section
+        class="glass transaction-sheet onboarding-sheet"
+        id="onboarding-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="onboarding-title"
+        hidden
+    >
+        <div class="sheet-header">
+            <div>
+                <div class="card-label">WELCOME TO VELORA</div>
+                <h2 id="onboarding-title">Your money, kept private.</h2>
+                <p class="muted">Everything is stored locally in this browser. Let's get your first budget workspace ready.</p>
+            </div>
+        </div>
+
+        <div class="onboarding-steps">
+            <article class="onboarding-step">
+                <span class="onboarding-step-number">1</span>
+                <div><strong>Create an account</strong><p class="muted">Add your cash, bank, or wallet balance.</p></div>
+            </article>
+            <article class="onboarding-step">
+                <span class="onboarding-step-number">2</span>
+                <div><strong>Record your first transaction</strong><p class="muted">Start with one income or expense.</p></div>
+            </article>
+            <article class="onboarding-step">
+                <span class="onboarding-step-number">3</span>
+                <div><strong>Back up your data</strong><p class="muted">Keep a JSON backup somewhere safe.</p></div>
+            </article>
+        </div>
+
+        <div class="sheet-actions">
+            <button class="secondary-button" id="onboarding-skip" type="button">Maybe later</button>
+            <button class="primary-button" id="onboarding-start" type="button">Get started</button>
+        </div>
+    </section>
+
+    <section
+        class="sheet-backdrop"
+        id="data-reset-backdrop"
+        hidden
+        aria-hidden="true"
+    ></section>
+
+    <section
+        class="confirm-dialog glass"
+        id="data-reset-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="data-reset-title"
+        aria-describedby="data-reset-description"
+        hidden
+    >
+        <h2 id="data-reset-title">Delete all Velora data?</h2>
+        <p class="muted" id="data-reset-description">This removes your transactions, accounts, categories, budgets, recurring expenses, goals, and saved settings from this browser. Export a backup first.</p>
+        <div class="form-field destructive-confirm-field">
+            <label for="data-reset-confirm">Type <strong>DELETE</strong> to continue</label>
+            <input id="data-reset-confirm" type="text" autocomplete="off" spellcheck="false" placeholder="DELETE" inputmode="text">
+        </div>
+        <p class="form-message" id="data-reset-message" role="alert" hidden></p>
+        <div class="sheet-actions">
+            <button class="secondary-button" id="cancel-data-reset" type="button">Cancel</button>
+            <button class="danger-button" id="confirm-data-reset" type="button" disabled>Delete everything</button>
+        </div>
+    </section>
+
+    <div class="update-banner" id="update-available" role="status" hidden>
+        <div>
+            <strong>A new Velora version is ready.</strong>
+            <span>Reload to use the latest version.</span>
+        </div>
+        <button class="secondary-button compact-button" id="reload-for-update" type="button">Reload</button>
+    </div>
+
+    <section
+        class="confirm-dialog glass"
+        id="goal-delete-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="goal-delete-title"
+        hidden
+    >
+        <h2 id="goal-delete-title">
+            Delete savings goal?
+        </h2>
+
+        <p
+            class="muted"
+            id="goal-delete-message"
+        >
+            This goal will be removed from this device.
+        </p>
+
+        <div class="sheet-actions">
+            <button
+                class="secondary-button"
+                id="cancel-goal-delete"
+                type="button"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-button"
+                id="confirm-goal-delete"
+                type="button"
+            >
+                Delete
+            </button>
+        </div>
+    </section>
+
+    <script src="js/state.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/transactions.js"></script>
+    <script src="js/accounts.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/budgets.js"></script>
+    <script src="js/recurring.js"></script>
+    <script src="js/goals.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/insights.js"></script>
+    <script src="js/safe-to-spend.js"></script>
+    <script src="js/activity.js"></script>
+    <script src="js/backup.js"></script>
+    <script src="js/csv.js"></script>
+    <script src="js/recovery.js"></script>
+    <script src="js/onboarding.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

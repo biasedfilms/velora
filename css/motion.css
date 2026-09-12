@@ -1,0 +1,323 @@
+/* Velora Motion System — restrained, springy, Apple-inspired motion. */
+
+:root {
+    --motion-spring: cubic-bezier(.22, 1, .36, 1);
+    --motion-spring-soft: cubic-bezier(.25, .8, .25, 1);
+    --motion-duration: 420ms;
+    --motion-fast: 160ms;
+    --motion-card: 240ms;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient background movement stays barely perceptible so the finance UI remains the focus. */
+body::before {
+    animation: velora-ambient-shift 18s ease-in-out infinite alternate;
+    transform: translateZ(0);
+}
+
+.app-shell {
+    animation: velora-shell-in var(--motion-duration) var(--motion-spring) both;
+}
+
+.sidebar {
+    animation: velora-sidebar-in 680ms var(--motion-spring) 60ms both;
+}
+
+.topbar .heading-group > * {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.topbar.is-motion-ready .heading-group > * {
+    animation: velora-rise var(--motion-card) var(--motion-spring) both;
+}
+
+.topbar.is-motion-ready .heading-group > *:nth-child(1) { animation-delay: 30ms; }
+.topbar.is-motion-ready .heading-group > *:nth-child(2) { animation-delay: 75ms; }
+.topbar.is-motion-ready .heading-group > *:nth-child(3) { animation-delay: 120ms; }
+
+.topbar-actions > * {
+    animation: velora-rise 360ms var(--motion-spring) both;
+}
+
+.topbar-actions > *:nth-child(1) { animation-delay: 95ms; }
+.topbar-actions > *:nth-child(2) { animation-delay: 130ms; }
+.topbar-actions > *:nth-child(3) { animation-delay: 165ms; }
+
+/* View transitions are driven by navigation.js. */
+.view > .motion-enter {
+    animation: velora-view-in 560ms var(--motion-spring) both;
+    animation-delay: calc(var(--motion-index, 0) * 55ms);
+}
+
+.view > .motion-enter .panel-header,
+.view > .motion-enter .card-topline {
+    animation: velora-content-settle 480ms var(--motion-spring) 100ms both;
+}
+
+/* Quiet depth on desktop. Never force hover transforms onto touch devices. */
+@media (hover: hover) and (pointer: fine) {
+    .glass {
+        transition:
+            background-color var(--transition-base),
+            border-color var(--transition-base),
+            box-shadow 260ms var(--motion-spring),
+            transform 260ms var(--motion-spring);
+    }
+
+    .panel:hover,
+    .hero-card:hover,
+    .stat-card:hover,
+    .safe-card:hover {
+        transform: translateY(-3px) scale(1.002);
+        box-shadow:
+            var(--glass-shadow),
+            0 14px 34px rgba(0, 0, 0, .07),
+            inset 0 1px 0 var(--glass-border-inner);
+    }
+
+    .nav-item,
+    .mobile-nav-item,
+    .icon-button,
+    .primary-button,
+    .secondary-button,
+    .danger-button,
+    .calendar-day,
+    .filter-button {
+        transition:
+            background-color var(--transition-fast),
+            border-color var(--transition-fast),
+            color var(--transition-fast),
+            box-shadow var(--motion-fast) var(--motion-spring),
+            transform var(--motion-fast) var(--motion-spring);
+    }
+
+    .nav-item:hover,
+    .mobile-nav-item:hover {
+        transform: translateX(2px);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover:not(:disabled),
+    .danger-button:hover:not(:disabled) {
+        transform: translateY(-1px);
+    }
+
+    .icon-button:hover {
+        transform: scale(1.035);
+    }
+}
+
+.nav-item.is-active,
+.mobile-nav-item.is-active {
+    transition:
+        background-color 280ms var(--motion-spring),
+        color 220ms var(--motion-spring),
+        transform 220ms var(--motion-spring);
+}
+
+.mobile-nav {
+    animation: velora-nav-dock-in 520ms var(--motion-spring) 140ms both;
+}
+
+/* Button press: crisp, physical feedback instead of a generic opacity change. */
+.primary-button:active,
+.secondary-button:active,
+.danger-button:active,
+.icon-button:active,
+.mobile-nav-item:active {
+    transition-duration: 80ms;
+    transform: scale(.965);
+}
+
+.theme-toggle.is-switching svg,
+.mobile-theme-toggle.is-switching svg {
+    animation: velora-theme-spin 460ms var(--motion-spring);
+}
+
+/* Sheets / dialogs */
+.sheet-backdrop {
+    animation: velora-backdrop-in 240ms ease-out both;
+    transform: translateZ(0);
+}
+
+.glass.transaction-sheet,
+.glass.category-sheet,
+.glass.confirm-dialog,
+.glass.onboarding-sheet,
+.mobile-more-sheet {
+    animation: velora-sheet-in 480ms var(--motion-spring) both;
+    transform-origin: 50% 100%;
+}
+
+/* Mobile bottom sheets get a vertical spring rather than the desktop scale entrance. */
+@media (max-width: 620px) {
+    .glass.transaction-sheet,
+    .glass.category-sheet,
+    .glass.confirm-dialog,
+    .glass.onboarding-sheet,
+    .mobile-more-sheet {
+        animation-name: velora-sheet-mobile-in;
+        transform-origin: 50% 100%;
+    }
+}
+
+/* Subtle list rhythm. The stagger only runs during a view entry. */
+.motion-enter .transaction-row,
+.motion-enter .account-row,
+.motion-enter .category-row,
+.motion-enter .budget-row,
+.motion-enter .goal-row,
+.motion-enter .recurring-row,
+.motion-enter .calendar-day-transaction,
+.motion-enter .settings-card {
+    opacity: 0;
+    animation: velora-list-in 420ms var(--motion-spring) both;
+}
+
+.motion-enter .transaction-row:nth-child(1),
+.motion-enter .account-row:nth-child(1),
+.motion-enter .category-row:nth-child(1),
+.motion-enter .budget-row:nth-child(1),
+.motion-enter .goal-row:nth-child(1),
+.motion-enter .recurring-row:nth-child(1),
+.motion-enter .calendar-day-transaction:nth-child(1),
+.motion-enter .settings-card:nth-child(1) { animation-delay: 70ms; }
+.motion-enter .transaction-row:nth-child(2),
+.motion-enter .account-row:nth-child(2),
+.motion-enter .category-row:nth-child(2),
+.motion-enter .budget-row:nth-child(2),
+.motion-enter .goal-row:nth-child(2),
+.motion-enter .recurring-row:nth-child(2),
+.motion-enter .calendar-day-transaction:nth-child(2),
+.motion-enter .settings-card:nth-child(2) { animation-delay: 105ms; }
+.motion-enter .transaction-row:nth-child(3),
+.motion-enter .account-row:nth-child(3),
+.motion-enter .category-row:nth-child(3),
+.motion-enter .budget-row:nth-child(3),
+.motion-enter .goal-row:nth-child(3),
+.motion-enter .recurring-row:nth-child(3),
+.motion-enter .calendar-day-transaction:nth-child(3),
+.motion-enter .settings-card:nth-child(3) { animation-delay: 140ms; }
+.motion-enter .transaction-row:nth-child(n+4),
+.motion-enter .account-row:nth-child(n+4),
+.motion-enter .category-row:nth-child(n+4),
+.motion-enter .budget-row:nth-child(n+4),
+.motion-enter .goal-row:nth-child(n+4),
+.motion-enter .recurring-row:nth-child(n+4),
+.motion-enter .calendar-day-transaction:nth-child(n+4),
+.motion-enter .settings-card:nth-child(n+4) { animation-delay: 175ms; }
+
+/* Cards remain interactive without feeling like they float around the screen. */
+.empty-state,
+.stat-divider,
+.soft-badge,
+.date-chip,
+.info-badge,
+.filter-button,
+.type-switch span,
+.category-options span {
+    transition:
+        background-color 200ms var(--motion-spring-soft),
+        border-color 200ms var(--motion-spring-soft),
+        color 200ms var(--motion-spring-soft),
+        box-shadow 200ms var(--motion-spring-soft),
+        transform 200ms var(--motion-spring);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .empty-state:hover {
+        transform: translateY(-1px);
+        border-color: var(--glass-border-hover);
+    }
+}
+
+/* Accessibility: honor the user's system preference with effectively static UI. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .topbar .heading-group > * {
+        opacity: 1;
+        transform: none;
+    }
+
+    body::before {
+        animation: none;
+    }
+}
+
+@keyframes velora-shell-in {
+    from { opacity: 0; transform: translateY(8px) scale(.995); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-sidebar-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-rise {
+    from { opacity: 0; transform: translate3d(0, 8px, 0); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-view-in {
+    from { opacity: 0; transform: translate3d(0, 8px, 0) scale(.996); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes velora-content-settle {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-list-in {
+    from { opacity: 0; transform: translate3d(0, 6px, 0); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-nav-dock-in {
+    from { opacity: 0; transform: translateY(18px) scale(.97); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes velora-backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes velora-sheet-in {
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 16px)) scale(.965); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes velora-sheet-mobile-in {
+    from { opacity: 0; transform: translate(-50%, 26px); }
+    to { opacity: 1; }
+}
+
+@keyframes velora-theme-spin {
+    from { transform: rotate(-35deg) scale(.82); opacity: .45; }
+    55% { transform: rotate(15deg) scale(1.08); opacity: 1; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes velora-ambient-shift {
+    0% { opacity: .78; }
+    100% { opacity: 1; }
+}
